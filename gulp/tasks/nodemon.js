@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
+var browserSync = require('browser-sync');
 var config = require('../config').nodemon;
 
 // we'd need a slight delay to reload browsers

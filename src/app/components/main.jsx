@@ -1,31 +1,26 @@
 /** In this file, we create a React component which incorporates components provided by material-ui */
 
 const React = require('react');
-const RaisedButton = require('material-ui/lib/raised-button');
-const Dialog = require('material-ui/lib/dialog');
 const ThemeManager = require('material-ui/lib/styles/theme-manager');
 const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme');
-const DarkRawTheme = require('material-ui/lib/styles/raw-themes/dark-raw-theme');
-const CustomTheme = require('material-ui/lib/styles/raw-themes/custom-theme');
-const Colors = require('material-ui/lib/styles/colors');
 
 const Main = React.createClass({
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object
-  },
+ childContextTypes: {
+   muiTheme: React.PropTypes.object
+ },
 
-  getInitialState () {
-    return {
-      muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
-    };
-  },
+ getInitialState () {
+   return {
+     muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
+   };
+ },
 
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-    };
-  },
+ getChildContext() {
+   return {
+     muiTheme: this.state.muiTheme,
+   };
+ },
 
   componentWillMount() {
    //how to modify parts of the raw theme
@@ -37,7 +32,7 @@ const Main = React.createClass({
   },
 
   render() {
-
+   /*
     let containerStyle = {
       textAlign: 'center',
       paddingTop: '200px'
@@ -47,28 +42,14 @@ const Main = React.createClass({
       { text: 'Okay' },
       { text: 'Not okay' }
     ];
-
+    */
     return (
-      <div style={containerStyle}>
-        <Dialog
-          title="Super Secret Password"
-          actions={standardActions}
-          ref="superSecretPasswordDialog">
-          1-2-3-4-5
-        </Dialog>
-
-        <h1>material-ui</h1>
-        <h2>{this.props.text}</h2>
-
-        <RaisedButton label="Super Secret Password" primary={true} onTouchTap={this._handleTouchTap} />
-
+      <div>
+       This is the MAIN COMPONENT
+       {this.props.children}
       </div>
     );
   },
-
-  _handleTouchTap() {
-    this.refs.superSecretPasswordDialog.show();
-  }
 
 });
 

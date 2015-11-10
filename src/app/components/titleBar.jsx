@@ -11,6 +11,8 @@ const MoreVertIcon =require('material-ui/lib/svg-icons/navigation/more-vert');
 const ThemeManager = require('material-ui/lib/styles/theme-manager');
 const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme');
 
+import { Link } from 'react-router';
+
 const TitleBar = React.createClass({
 
  //the key passed through context must be called "muiTheme"
@@ -19,8 +21,8 @@ const TitleBar = React.createClass({
  },
 
  menuItems: [
-  { route: 'get-started', text: 'Get Started', id: 0 },
-  { route: 'customization', text: 'Customization', id: 1 },
+  { route: 'button', text: 'Get Started', id: 0 },
+  { route: 'main', text: 'Customization', id: 1 },
   { route: 'components', text: 'Components', id: 2 },
   { text: 'Resources', id: 3 },
   {
@@ -67,6 +69,10 @@ const TitleBar = React.createClass({
   this.refs.leftNav.toggle();
  },
 
+ _onLeftNavChange(e, key, payload) {
+  this.props.history.pushState(null, payload.route);
+ },
+
 //the app bar and button will receive our theme through
 //context and style accordingly
  render(){
@@ -77,14 +83,8 @@ const TitleBar = React.createClass({
      title={this.state.selectedItem}
      showMenuIconButton={true}
      onLeftIconButtonTouchTap={titleBarObj._handleLeftNavToggle} />
-    <LeftNav ref="leftNav" docked={false} >
-     {this.menuItems.map(function(menuItem){
-      return <MenuItem key={menuItem.id}
-       primaryText={menuItem.text}
-       disabled={menuItem.disabled}
-       onTouchTap={titleBarObj._handleMenuTouch.bind(titleBarObj,{text: menuItem.text})} />;
-     })}
-    </LeftNav>
+    <LeftNav ref="leftNav" docked={false} onChange={this._onLeftNavChange} menuItems={this.menuItems}/>
+    {this.props.children}
    </div>
   );
  }

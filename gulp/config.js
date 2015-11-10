@@ -1,5 +1,5 @@
 var dest = './build',
-  src = './src/client',
+  src = './src/',
   mui = './node_modules/material-ui/src';
 
 module.exports = {
@@ -8,11 +8,8 @@ module.exports = {
   dest: dest
  },
  browserSync: {
-  server: {
-   // We're serving the src folder as well
-   // for sass sourcemap linking
-   baseDir: [dest, src]
-  },
+  proxy: "http://localhost:3000",
+  port: 4000,
   files: [
    dest + '/**'
   ]
