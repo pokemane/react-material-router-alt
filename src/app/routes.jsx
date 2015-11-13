@@ -5,9 +5,8 @@ import HomeButton from './components/HomeButton.jsx';
 import TitleBar from './components/TitleBar.jsx';
 
 export default (
-  <Route path="/" component={TitleBar}>
-   <IndexRoute component={Main} />
+  <Route path="/" component={Main}>
+   <IndexRoute component={HomeButton} />
    <Route path="button" component={HomeButton} />
-   <Route path="main" component={Main} />
   </Route>
 );

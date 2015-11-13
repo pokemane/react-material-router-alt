@@ -21,39 +21,18 @@ const TitleBar = React.createClass({
  },
 
  menuItems: [
-  { route: 'button', text: 'Get Started', id: 0 },
-  { route: 'main', text: 'Customization', id: 1 },
-  { route: 'components', text: 'Components', id: 2 },
-  { text: 'Resources', id: 3 },
-  {
-   payload: 'https://github.com/callemall/material-ui',
-   text: 'GitHub',
-   id: 4
-  },
-  {
-     text: 'Disabled',
-     disabled: true,
-     id: 5
-  },
-  {
-     payload: 'https://www.google.com',
-     text: 'Disabled Link',
-     disabled: true,
-     id: 6
-  },
+  { route: 'home', text: 'Home', id: 0 },
+  { route: 'standinfo', text: 'Stand Info', id: 1 },
 ],
 
  getInitialState () {
    return {
-     muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
-     selectedItem: "Main Menu"
+     selectedItem: "Home"
    };
  },
 
  getChildContext(){
-  return{
-   muiTheme: ThemeManager.getMuiTheme(LightRawTheme),
-  };
+
  },
 
  componentDidMount(){
@@ -83,7 +62,14 @@ const TitleBar = React.createClass({
      title={this.state.selectedItem}
      showMenuIconButton={true}
      onLeftIconButtonTouchTap={titleBarObj._handleLeftNavToggle} />
-    <LeftNav ref="leftNav" docked={false} onChange={this._onLeftNavChange} menuItems={this.menuItems}/>
+     <LeftNav ref="leftNav" docked={false} >
+      {this.menuItems.map(function(menuItem){
+       return <MenuItem key={menuItem.id}
+        primaryText={menuItem.text}
+        disabled={menuItem.disabled}
+        onTouchTap={titleBarObj._handleMenuTouch.bind(titleBarObj,{text: menuItem.text})} />;
+      })}
+     </LeftNav>
     {this.props.children}
    </div>
   );
