@@ -1,10 +1,8 @@
-/** In this file, we create a React component which incorporates components provided by material-ui */
-
 const React = require('react');
 const ThemeManager = require('material-ui/lib/styles/theme-manager');
 const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme');
 
-const TitleBar = require('./TitleBar.jsx');
+const TitleBar = require('./TitleBar');
 
 const Main = React.createClass({
 
@@ -25,13 +23,13 @@ const Main = React.createClass({
  },
 
   componentWillMount() {
-   
+
   },
 
   render() {
     return (
       <div>
-       <TitleBar />
+       <TitleBar history={this.props.history}/>
        {this.props.children}
       </div>
     );

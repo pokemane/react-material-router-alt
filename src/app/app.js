@@ -5,10 +5,7 @@ import { Router, Route, IndexRoute } from 'react-router';
 let injectTapEventPlugin = require('react-tap-event-plugin');
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
-import Main from './components/Main.jsx';
-import HomeButton from './components/HomeButton.jsx';
-
-import AppRoutes from './routes.jsx';
+import AppRoutes from './routes';
 
 //Needed for React Developer Tools
 window.React = React;

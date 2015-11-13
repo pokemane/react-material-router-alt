@@ -23,6 +23,7 @@ const TitleBar = React.createClass({
  menuItems: [
   { route: 'home', text: 'Home', id: 0 },
   { route: 'standinfo', text: 'Stand Info', id: 1 },
+  { route: 'home', text: 'Button', id: 2 }
 ],
 
  getInitialState () {
@@ -45,31 +46,34 @@ const TitleBar = React.createClass({
 
  _handleMenuTouch(item,e){
   this.setState({selectedItem: item.text});
-  this.refs.leftNav.toggle();
+  this.props.history.pushState(null, item.route);
+  this.refs.leftNav.close();
  },
 
  _onLeftNavChange(e, key, payload) {
   this.props.history.pushState(null, payload.route);
+  this.refs.leftNav.close();
  },
 
-//the app bar and button will receive our theme through
-//context and style accordingly
  render(){
   var titleBarObj = this;
   return(
    <div>
+
     <AppBar
      title={this.state.selectedItem}
      showMenuIconButton={true}
      onLeftIconButtonTouchTap={titleBarObj._handleLeftNavToggle} />
-     <LeftNav ref="leftNav" docked={false} >
+
+    <LeftNav ref="leftNav" docked={false}>
       {this.menuItems.map(function(menuItem){
        return <MenuItem key={menuItem.id}
         primaryText={menuItem.text}
         disabled={menuItem.disabled}
-        onTouchTap={titleBarObj._handleMenuTouch.bind(titleBarObj,{text: menuItem.text})} />;
+        onTouchTap={titleBarObj._handleMenuTouch.bind(titleBarObj,menuItem)} />;
       })}
      </LeftNav>
+
     {this.props.children}
    </div>
   );
