@@ -7,7 +7,7 @@ const MenuDivider = require('material-ui/lib/menus/menu-divider');
 const LeftNav = require('material-ui/lib/left-nav');
 const FlatButton = require('material-ui/lib/flat-button');
 const Menu = require('material-ui/lib/menus/menu');
-const MoreVertIcon =require('material-ui/lib/svg-icons/navigation/more-vert');
+const MoreVertIcon = require('material-ui/lib/svg-icons/navigation/more-vert');
 const ThemeManager = require('material-ui/lib/styles/theme-manager');
 const LightRawTheme = require('material-ui/lib/styles/raw-themes/light-raw-theme');
 
@@ -27,9 +27,9 @@ const TitleBar = React.createClass({
 ],
 
  getInitialState () {
-   return {
-     selectedItem: "Home"
-   };
+  return(
+   null
+  );
  },
 
  getChildContext(){
@@ -61,7 +61,7 @@ const TitleBar = React.createClass({
    <div>
 
     <AppBar
-     title={this.state.selectedItem}
+     title="Stand Telemetry Service"
      showMenuIconButton={true}
      onLeftIconButtonTouchTap={titleBarObj._handleLeftNavToggle} />
 

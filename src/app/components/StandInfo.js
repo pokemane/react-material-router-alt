@@ -4,8 +4,12 @@ const StandInfo = React.createClass({
   render(){
     return(
       <div>
-        <h2>Stand Info</h2>
-        {this.props.children}
+        <div className="Toolbar">
+         {this.props.toolbar}
+        </div>
+        <div className="Main">
+         {this.props.main}
+        </div>
       </div>
     );
   }

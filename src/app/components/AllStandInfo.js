@@ -26,14 +26,14 @@ const AllStandInfo = React.createClass({
       health: 100
     },
     {
-      name: 'TC01A',
+      name: 'TC07A',
       status: 'testing',
       health: 95
     },
     {
-      name: 'TC01B',
+      name: 'TC09A',
       status: 'testing',
-      health: 83
+      health: 95
     },
   ],
 
@@ -42,11 +42,13 @@ const AllStandInfo = React.createClass({
       textAlign: 'center'
     };
 
+    let allStandInfo = this;
+
     return(
       <div style={containerStyle}>
         <div style={{height:'100px'}} />
         {this.telemetryItems.map(function(telemetryItem){
-          return <StandTelemetry data={telemetryItem} />;
+          return <StandTelemetry data={telemetryItem} key={telemetryItem.name} history={allStandInfo.props.history} />;
         })}
       </div>
     );
